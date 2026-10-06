@@ -1,0 +1,13 @@
+Alright, welcome everyone to the Q3 product review sync.
+Let's start with the big item on the agenda, the cloud infrastructure migration.
+After reviewing the cost analysis from last week,
+we have officially decided to migrate our entire backend from AWS to Google Cloud Platform.
+That is a final decision, so let's start planning the architecture.
+Mark, I need you to lead the database migration effort.
+Please have the initial schema mapping completed by November 15.
+Next, regarding the new mobile app design, we need someone to research cross-platform frameworks,
+specifically Flutter and React Native. I am not assigning this to anyone specifically yet,
+and there is no hard deadline, just whoever has capacity next sprint. Finally, we also decided
+today that all future API endpoints must be documented using Swagger before they are merged.
+That is another key decision for our engineering workflow.
+So, thanks everyone, let's get to work.

@@ -1,0 +1,4 @@
+ACTION ITEMS
+
+[ ] Lead the database migration effort and complete the initial schema mapping | Owner: Mark | Deadline: November 15
+[ ] Research cross‑platform mobile frameworks Flutter and React Native | Owner: Unspecified | Deadline: Unspecified

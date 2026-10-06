@@ -1,0 +1,51 @@
+FULL MEETING RECORD
+===================
+
+EXECUTIVE SUMMARY
+-----------------
+The team confirmed the migration of the backend from AWS to Google Cloud Platform and set new engineering standards for API documentation. Mark was assigned to lead the database migration with a November 15 deadline for initial schema mapping, and a research task on cross‑platform mobile frameworks was identified without a specific owner or deadline.
+
+ACTION ITEMS
+------------
+[ ] Lead the database migration effort and complete the initial schema mapping | Owner: Mark | Deadline: November 15
+[ ] Research cross‑platform mobile frameworks Flutter and React Native | Owner: Unspecified | Deadline: Unspecified
+
+KEY DECISIONS
+-------------
+* Migrate the entire backend from AWS to Google Cloud Platform.
+* All future API endpoints must be documented using Swagger before they are merged.
+
+MINUTES
+-------
+[Unspecified] Cloud infrastructure migration decision
+The group reviewed the cost analysis and formally decided to migrate the entire backend from AWS to Google Cloud Platform.
+
+[Unspecified] Database migration planning
+Mark was asked to lead the database migration effort and to complete the initial schema mapping by November 15.
+
+[Unspecified] Mobile app design research
+The team needs research on cross‑platform frameworks (Flutter and React Native); no specific assignee or deadline was set, pending capacity in the next sprint.
+
+[Unspecified] API documentation workflow
+It was decided that all future API endpoints must be documented using Swagger before they are merged.
+
+
+REFINED TRANSCRIPT
+------------------
+Alright, welcome everyone to the Q3 product review sync. Let's start with the big item on the agenda, the cloud infrastructure migration. After reviewing the cost analysis from last week, we have officially decided to migrate our entire backend from AWS to Google Cloud Platform. That is a final decision, so let's start planning the architecture. Mark, I need you to lead the database migration effort. Please have the initial schema mapping completed by November 15. Next, regarding the new mobile app design, we need someone to research cross‑platform frameworks, specifically Flutter and React Native. I am not assigning this to anyone specifically yet, and there is no hard deadline, just whoever has capacity next sprint. Finally, we also decided today that all future API endpoints must be documented using Swagger before they are merged. That is another key decision for our engineering workflow. So, thanks everyone, let's get to work.
+
+RAW TRANSCRIPT
+--------------
+Alright, welcome everyone to the Q3 product review sync.
+Let's start with the big item on the agenda, the cloud infrastructure migration.
+After reviewing the cost analysis from last week,
+we have officially decided to migrate our entire backend from AWS to Google Cloud Platform.
+That is a final decision, so let's start planning the architecture.
+Mark, I need you to lead the database migration effort.
+Please have the initial schema mapping completed by November 15.
+Next, regarding the new mobile app design, we need someone to research cross-platform frameworks,
+specifically Flutter and React Native. I am not assigning this to anyone specifically yet,
+and there is no hard deadline, just whoever has capacity next sprint. Finally, we also decided
+today that all future API endpoints must be documented using Swagger before they are merged.
+That is another key decision for our engineering workflow.
+So, thanks everyone, let's get to work.

@@ -1,0 +1,14 @@
+MEETING MINUTES
+
+[Unspecified] Cloud infrastructure migration decision
+The team reviewed the cost analysis and made a final decision to migrate the entire backend from AWS to Google Cloud Platform.
+
+[Unspecified] Database migration task assignment
+Mark was assigned to lead the database migration effort, with the initial schema mapping to be completed by November 15.
+
+[Unspecified] Mobile app design research
+The team identified the need to research cross‑platform frameworks (Flutter and React Native) but did not assign an owner or set a deadline.
+
+[Unspecified] API documentation workflow decision
+It was decided that all future API endpoints must be documented using Swagger before they are merged.
+

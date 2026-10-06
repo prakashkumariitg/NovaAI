@@ -1,0 +1,4 @@
+KEY DECISIONS
+
+* Migrate the entire backend from AWS to Google Cloud Platform.
+* All future API endpoints must be documented using Swagger before they are merged.
