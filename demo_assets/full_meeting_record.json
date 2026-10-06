@@ -1,49 +1,42 @@
 {
-  "raw_transcript": "Alright everyone, thanks for joining the weekly ML infrastructure sync.\nUm, let's get right into the agenda. First up, we need to discuss our model deployment pipeline.\nCurrently, we are using PyTorch for our training, but deploying it on the bare metal servers is\nbecoming, like, a massive bottleneck.\nUmm, we should definitely look into containerizing everything.\nI was thinking we migrate the entire stack over to Kubernetes by the end of Q3.\nUmm, David, can you take ownership of the Kubernetes cluster setup?\nI need that completed by October 25th at the absolute latest.\nAh, moving on.\nOur data ingestion is also struggling.\nThe current post-grass SQL database is hitting max connections every night.\nWe might need to transition our logs to a no-SQL solution, maybe something like MangoDB or\neven just dumping them into an Amazon S3 bucket.\nUmm, Rachel, can you investigate the costs of moving our data lake to S3?\nThere is no rush on this, just whenever you have some free cycles in the next few weeks.\nAlso, regarding the natural language processing models, someone mentioned that our current\nimplementation of the hugging face transformers is eating up too much VRAM on the A100 GPUS.\nWe might need to implement some form of quantization, maybe using 8-bit integer formats.\nI don't know who is currently maintaining the NLP inference pipeline, but whoever it\nis, please look into quantization techniques, as soon as possible.\nFinally, for the front end, the React components for the dashboard are looking a bit sluggish.\nI think we should switch out our charting library.\nMaybe look into D3.js or recharge.\nUh, Alex, please evaluate those two libraries.\nAgain, no strict deadline, just report back when you have a comparison matrix.\nAlright, I think that covers everything.\nThanks everyone, have a great weekend.",
-  "refined_transcript": "Alright everyone, thanks for joining the weekly ML infrastructure sync. Let's get right into the agenda. First up, we need to discuss our model deployment pipeline. Currently, we are using PyTorch for training, but deploying it on the bare metal servers is becoming a massive bottleneck. We should definitely look into containerizing everything. I was thinking we migrate the entire stack over to Kubernetes by the end of Q3. David, can you take ownership of the Kubernetes cluster setup? I need that completed by October 25th at the absolute latest. Moving on. Our data ingestion is also struggling. The current PostgreSQL database is hitting max connections every night. We might need to transition our logs to a NoSQL solution, maybe something like MongoDB or even just dumping them into an Amazon S3 bucket. Rachel, can you investigate the costs of moving our data lake to S3? There is no rush on this, just whenever you have some free cycles in the next few weeks. Also, regarding the natural language processing models, someone mentioned that our current implementation of the Hugging Face transformers is eating up too much VRAM on the A100 GPUs. We might need to implement some form of quantization, maybe using 8\u2011bit integer formats. I don't know who is currently maintaining the NLP inference pipeline, but whoever it is, please look into quantization techniques as soon as possible. Finally, for the front end, the React components for the dashboard are looking a bit sluggish. I think we should switch out our charting library. Maybe look into D3.js or Recharts. Alex, please evaluate those two libraries. Again, no strict deadline, just report back when you have a comparison matrix. Alright, I think that covers everything. Thanks everyone, have a great weekend.",
-  "summary": "The team discussed bottlenecks in model deployment, data ingestion, NLP inference, and front\u2011end performance, proposing containerization on Kubernetes, a possible move to S3 for logs, quantization of transformers, and evaluation of new charting libraries. Specific owners and deadlines were assigned for Kubernetes setup, S3 cost investigation, and front\u2011end library evaluation.",
+  "raw_transcript": "All right, welcome everyone to the Q3 product review sync.\nLet's start with the big item on the agenda,\nthe cloud infrastructure migration.\nAfter reviewing the cost analysis from last week,\nwe have officially decided to migrate our entire backend\nfrom AWS to Google Cloud Platform.\nThat is a final decision, so let's start planning the architecture.\nMark, I need you to lead the database migration effort.\nPlease have the initial schema mapping completed by November 15.\nNext, regarding the new mobile app design,\nWe need someone to research cross-platform frameworks, specifically Flutter and React Native.\nI am not assigning this to anyone specifically yet, and there is no hard deadline,\njust whoever has capacity next sprint. Finally, we also decided today that all future API endpoints\nmust be documented using Swagger before they are merged. That is another key decision for our\nengineering workflow. Thanks everyone, let's get to work.",
+  "refined_transcript": "All right, welcome everyone to the Q3 product review sync. Let's start with the big item on the agenda, the cloud infrastructure migration. After reviewing the cost analysis from last week, we have officially decided to migrate our entire backend from AWS to Google Cloud Platform. That is a final decision, so let's start planning the architecture. Mark, I need you to lead the database migration effort. Please have the initial schema mapping completed by November 15. Next, regarding the new mobile app design, we need someone to research cross\u2011platform frameworks, specifically Flutter and React Native. I am not assigning this to anyone specifically yet, and there is no hard deadline, just whoever has capacity next sprint. Finally, we also decided today that all future API endpoints must be documented using Swagger before they are merged. That is another key decision for our engineering workflow. Thanks everyone, let's get to work.",
+  "summary": "The Q3 product review sync resulted in a final decision to migrate the entire backend from AWS to Google Cloud Platform, assigned Mark to lead the database migration with a November 15 deadline for schema mapping, identified a need to research cross\u2011platform mobile frameworks, and established that all future API endpoints must be documented with Swagger before merging.",
   "minutes": [
     {
       "time": "Unspecified",
-      "topic": "Model deployment pipeline",
-      "details": "The current bare\u2011metal deployment is a bottleneck; the team plans to containerize the stack and migrate to Kubernetes by the end of Q3."
+      "topic": "Cloud Infrastructure Migration",
+      "details": "The team reviewed the cost analysis and made a final decision to migrate the entire backend from AWS to Google Cloud Platform and began planning the architecture."
     },
     {
       "time": "Unspecified",
-      "topic": "Data ingestion",
-      "details": "PostgreSQL is hitting max connections nightly; options include moving logs to a NoSQL store or dumping them into an Amazon S3 bucket."
+      "topic": "Database Migration Assignment",
+      "details": "Mark was assigned to lead the database migration effort, with a requirement to complete the initial schema mapping by November 15."
     },
     {
       "time": "Unspecified",
-      "topic": "NLP inference performance",
-      "details": "Hugging Face transformers are consuming excessive VRAM on A100 GPUs, prompting a need to explore 8\u2011bit quantization techniques."
+      "topic": "Mobile App Design Research",
+      "details": "The group identified the need to research cross\u2011platform frameworks, specifically Flutter and React Native, with no specific assignee or deadline at this time."
     },
     {
       "time": "Unspecified",
-      "topic": "Front\u2011end dashboard performance",
-      "details": "React components are sluggish, and the team will compare D3.js and Recharts as potential replacement charting libraries."
+      "topic": "API Documentation Workflow",
+      "details": "It was decided that all future API endpoints must be documented using Swagger before they are merged into the codebase."
     }
   ],
-  "decisions": [],
+  "decisions": [
+    "Migrate the entire backend from AWS to Google Cloud Platform.",
+    "All future API endpoints must be documented using Swagger before they are merged."
+  ],
   "tasks": [
     {
-      "task": "Set up the Kubernetes cluster for model deployment",
-      "owner": "David",
-      "deadline": "October 25th"
+      "task": "Lead the database migration effort and complete the initial schema mapping",
+      "owner": "Mark",
+      "deadline": "November 15"
     },
     {
-      "task": "Investigate the costs of moving the data lake to Amazon S3",
-      "owner": "Rachel",
-      "deadline": "Unspecified"
-    },
-    {
-      "task": "Research and implement quantization techniques for the NLP inference pipeline",
+      "task": "Research cross\u2011platform mobile frameworks (Flutter and React Native)",
       "owner": "Unspecified",
-      "deadline": "Unspecified"
-    },
-    {
-      "task": "Evaluate D3.js and Recharts as replacement charting libraries and produce a comparison matrix",
-      "owner": "Alex",
       "deadline": "Unspecified"
     }
   ]
