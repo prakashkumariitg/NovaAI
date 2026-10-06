@@ -17,22 +17,26 @@ flowchart TD
     classDef backend fill:#111633,stroke:#14B8A6,stroke-width:2px,color:#fff;
     classDef model fill:#1A1F3D,stroke:#8B5CF6,stroke-width:2px,color:#fff;
 
-    Upload([Audio Upload]) ::: frontend --> API[FastAPI Server] ::: backend
+    Upload([Audio Upload]) --> API[FastAPI Server]
     
     subgraph Pipeline [Multimodal Processing Pipeline]
-        API --> A[Audio Validation & Decoding] ::: backend
-        A --> STT[faster-whisper STT] ::: model
-        STT -- Raw Transcript --> REF[Refinement LLM] ::: model
-        REF -- Domain-aware Correction --> DOC[Documentation LLM] ::: model
+        API --> A[Audio Validation & Decoding]
+        A --> STT[faster-whisper STT]
+        STT -- Raw Transcript --> REF[Refinement LLM]
+        REF -- Domain-aware Correction --> DOC[Documentation LLM]
     end
 
-    DOC -- JSON Meeting Record --> UI[Animated Results UI] ::: frontend
+    DOC -- JSON Meeting Record --> UI[Animated Results UI]
     
     subgraph Outputs [Downloadable Formats]
-        UI -.-> MD[.md Export] ::: frontend
-        UI -.-> TXT[.txt Export] ::: frontend
-        UI -.-> CSV[.csv Export] ::: frontend
+        UI -.-> MD[.md Export]
+        UI -.-> TXT[.txt Export]
+        UI -.-> CSV[.csv Export]
     end
+
+    class Upload,UI,MD,TXT,CSV frontend;
+    class API,A backend;
+    class STT,REF,DOC model;
 ```
 
 ### Module Breakdown
