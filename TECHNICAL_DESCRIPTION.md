@@ -48,4 +48,4 @@ The interface allows one-click downloads for all generated artifacts, with adapt
 
 ## Submission assets
 
-Sample recordings, generated sample outputs, and a demo video should be added to the repository root when preparing the final submission zip.
+The sample meeting audio recording and all generated JSON/Markdown outputs are located in the Meeting_Audio_And_with_Items folder. The end-to-end demonstration video can be viewed [here](https://drive.google.com/file/d/1wsBDuVjTtuZH1O0zTVtvMupwXKaszlqF/view?usp=sharing).

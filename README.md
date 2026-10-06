@@ -7,6 +7,11 @@ NovaAI is a production-ready meeting-assistant workflow that transforms uploaded
 
 It satisfies all ML Bootcamp Problem Statement constraints, including strict anti-hallucination guardrails ensuring that missing action item owners or deadlines are explicitly marked as `Unspecified`.
 
+## 🎥 Demonstration Video
+**[Click here to watch the full end-to-end demonstration video](https://drive.google.com/file/d/1wsBDuVjTtuZH1O0zTVtvMupwXKaszlqF/view?usp=sharing)**
+
+---
+
 ## 🧠 Architecture & Workflow
 
 The application is built on a modern **FastAPI** backend serving a highly interactive, animated **Single Page Application (SPA)**. It orchestrates a coordinated multimodal AI pipeline.
