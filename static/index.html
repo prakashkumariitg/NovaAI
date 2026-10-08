@@ -375,13 +375,7 @@ ${globalRawTranscript}
       background: rgba(26, 31, 61, 0.7);
     }
     
-    .mic-bob {
-      animation: bob 3s infinite ease-in-out;
-    }
-    @keyframes bob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    
 
     
     .pipeline-step.active .spinner-ring {
@@ -580,7 +574,7 @@ ${globalRawTranscript}
       
       <input type="file" id="file-input" style="display:none;" accept="audio/*" />
       <div class="upload-zone-wrapper p-8" id="upload-zone">
-        <div class="mic-bob mb-4">
+        <div class="mb-4">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-indigo-400">
             <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
             <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
