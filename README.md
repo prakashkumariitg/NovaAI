@@ -1,20 +1,20 @@
-# NovaAI — AI Meeting Assistant
+# NovaAI - AI Meeting Assistant
 
 ![NovaAI Pipeline](https://img.shields.io/badge/Architecture-FastAPI%20%2B%20HTML-0A0E27?style=flat-square&logo=fastapi)
 ![Models](https://img.shields.io/badge/Models-Whisper%20%7C%20Groq%20LLMs-14B8A6?style=flat-square)
 
-NovaAI is a production-ready meeting-assistant workflow that transforms uploaded English-language audio recordings into highly accurate, structured meeting records. 
+NovaAI is an end-to-end meeting assistant that transforms uploaded audio recordings into highly accurate, structured meeting records. 
 
-It satisfies all ML Bootcamp Problem Statement constraints, including strict anti-hallucination guardrails ensuring that missing action item owners or deadlines are explicitly marked as `Unspecified`.
+It satisfies all ML Bootcamp Problem Statement constraints, including strict anti-hallucination guardrails that ensure missing action item owners or deadlines are explicitly marked as `Unspecified`.
 
 ## 🎥 Demonstration Video
 **[Click here to watch the full end-to-end demonstration video](https://drive.google.com/file/d/1HzktXo8VJhSuJ44VvV3o9ZObw6YqjPCl/view?usp=sharing)**
 
 ---
 
-## 🧠 Architecture & Workflow
+## 🏗 System Architecture & Workflow
 
-The application is built on a modern **FastAPI** backend serving a highly interactive, animated **Single Page Application (SPA)**. It orchestrates a coordinated multimodal AI pipeline.
+The application connects a modern **FastAPI** backend to a custom **Single Page Application (SPA)**. It runs a distinct 3-stage multimodal AI pipeline.
 
 ```mermaid
 flowchart TD
@@ -44,12 +44,24 @@ flowchart TD
     class STT,REF,DOC model;
 ```
 
-### Module Breakdown
-- `static/index.html`: A custom, highly animated SPA frontend featuring a glassmorphism UI, real-time pipeline status, and inline error handling.
-- `api.py`: FastAPI backend that orchestrates the multimodal processing pipeline and serves the frontend.
+### Ordered Processing Workflow
+1. **Audio processing:** The uploaded recording is validated and processed locally. `faster-whisper` (`base.en` by default) transcribes the audio, producing the raw English transcript.
+2. **Transcript refinement:** A dedicated Language Model processes the raw transcript, correcting speech-recognition errors (especially domain-specific terms and acronyms) and returning a clean, highly readable transcript without altering the original meaning.
+3. **Meeting documentation:** A separate, more capable documentation Language Model converts the refined transcript into a highly structured JSON record containing an executive summary, chronological minutes, explicit decisions, and concrete action items.
+
+### Models Utilized
+- **Speech-to-Text Model:** `faster-whisper` (`base.en`). Runs locally and is optimized for English transcription speed and accuracy.
+- **Transcript Refinement Model:** `openai/gpt-oss-20b` (via Groq API). A fast, highly capable open-source model tasked specifically with proofreading and terminology correction while strictly preserving intent, names, numbers, and negations.
+- **Meeting Documentation Model:** `openai/gpt-oss-120b` (via Groq API). A powerful, high-parameter model tasked with deep semantic extraction. It synthesizes accurate minutes, decisions, and tasks, strictly following anti-hallucination guardrails (e.g., outputting `Unspecified` for missing owners/deadlines).
+
+*All model names and endpoints are fully configurable via the `.env` file.*
+
+## 🧩 Module Breakdown
+- `static/index.html`: A custom SPA frontend featuring real-time pipeline status and inline error handling.
+- `api.py`: FastAPI backend that runs the multimodal processing pipeline and serves the frontend.
 - `audio_processing.py`: Audio validation and local transcription using `faster-whisper`.
 - `llm_chains.py`: Manages the separate LLM stages for transcript refinement and documentation generation.
-- `prompts.py`: Highly optimized system prompts enforcing strict extraction rules and anti-hallucination constraints.
+- `prompts.py`: Optimized system prompts enforcing strict extraction rules and anti-hallucination constraints.
 
 ## 🚀 Getting Started
 
@@ -58,13 +70,12 @@ flowchart TD
 - FFmpeg installed on your system
 
 ### 1. Local Setup
-
 Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/prakashkumariitg/NovaAI.git
 cd NovaAI
 python -m venv .venv
-# Windows: .venv\Scripts\activate
+# Windows: .venv\Scriptsctivate
 # Linux/Mac: source .venv/bin/activate
 
 pip install -r requirements.txt
@@ -90,9 +101,11 @@ Open `http://localhost:8000` in your web browser.
 ## 🐳 Docker Deployment
 
 A `Dockerfile` is included for containerized deployment.
-
 ```bash
 docker build -t nova-ai .
 docker run -p 8000:8000 --env-file .env nova-ai
 ```
 Visit `http://localhost:8000`.
+
+## 📁 Submission Assets
+The sample meeting audio recording and all generated JSON/Markdown outputs are located in the `Meeting_Audio_And_with_Items` folder.
