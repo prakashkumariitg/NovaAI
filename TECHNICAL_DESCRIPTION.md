@@ -48,4 +48,4 @@ The interface allows one-click downloads for all generated artifacts, with adapt
 
 ## Submission assets
 
-The sample meeting audio recording and all generated JSON/Markdown outputs are located in the Meeting_Audio_And_with_Items folder. The end-to-end demonstration video can be viewed [here](https://drive.google.com/file/d/1wsBDuVjTtuZH1O0zTVtvMupwXKaszlqF/view?usp=sharing).
+The sample meeting audio recording and all generated JSON/Markdown outputs are located in the Meeting_Audio_And_with_Items folder. The end-to-end demonstration video can be viewed [here](https://drive.google.com/file/d/1HzktXo8VJhSuJ44VvV3o9ZObw6YqjPCl/view?usp=sharing).
