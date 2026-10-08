@@ -5,7 +5,6 @@
 
 NovaAI is an end-to-end meeting assistant that takes uploaded audio recordings and converts them into accurate, structured meeting records. 
 
-It covers all ML Bootcamp Problem Statement constraints, including strict rules that force the model to output `Unspecified` whenever action item owners or deadlines are missing.
 
 ## Demonstration Video
 **[Click here to watch the full end-to-end demonstration video](https://drive.google.com/file/d/1LawMg1-v7F0nzuKG42JFT1j9vKnCQiRA/view?usp=sharing)**
