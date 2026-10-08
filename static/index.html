@@ -894,11 +894,11 @@ ${globalRawTranscript}
     let globalRawTranscript = "";
     let globalRefinedTranscript = "";
 
-    document.getElementById('upload-zone').addEventListener('click', () => {
-      document.getElementById('file-input').click();
-    });
 
-    document.getElementById('file-input').addEventListener('change', async (e) => {
+
+    document.getElementById('file-input').addEventListener('click', function() { this.value = null; });
+
+      document.getElementById('file-input').addEventListener('change', async (e) => {
       if (!e.target.files.length) return;
       const file = e.target.files[0];
       
