@@ -3,18 +3,18 @@
 ![NovaAI Pipeline](https://img.shields.io/badge/Architecture-FastAPI%20%2B%20HTML-0A0E27?style=flat-square&logo=fastapi)
 ![Models](https://img.shields.io/badge/Models-Whisper%20%7C%20Groq%20LLMs-14B8A6?style=flat-square)
 
-NovaAI is an end-to-end meeting assistant that transforms uploaded audio recordings into highly accurate, structured meeting records. 
+NovaAI is an end-to-end meeting assistant that takes uploaded audio recordings and converts them into accurate, structured meeting records. 
 
-It satisfies all ML Bootcamp Problem Statement constraints, including strict anti-hallucination guardrails that ensure missing action item owners or deadlines are explicitly marked as `Unspecified`.
+It covers all ML Bootcamp Problem Statement constraints, including strict rules that force the model to output `Unspecified` whenever action item owners or deadlines are missing.
 
-## 🎥 Demonstration Video
+## Demonstration Video
 **[Click here to watch the full end-to-end demonstration video](https://drive.google.com/file/d/1HzktXo8VJhSuJ44VvV3o9ZObw6YqjPCl/view?usp=sharing)**
 
 ---
 
-## 🏗 System Architecture & Workflow
+## System Architecture & Workflow
 
-The application connects a modern **FastAPI** backend to a custom **Single Page Application (SPA)**. It runs a distinct 3-stage multimodal AI pipeline.
+The backend uses **FastAPI** to connect the audio processing directly to the frontend interface. It runs a 3-stage AI pipeline.
 
 ```mermaid
 flowchart TD
@@ -24,14 +24,14 @@ flowchart TD
 
     Upload([Audio Upload]) --> API[FastAPI Server]
     
-    subgraph Pipeline [Multimodal Processing Pipeline]
+    subgraph Pipeline [Processing Pipeline]
         API --> A[Audio Validation & Decoding]
         A --> STT[faster-whisper STT]
         STT -- Raw Transcript --> REF[Refinement LLM]
         REF -- Domain-aware Correction --> DOC[Documentation LLM]
     end
 
-    DOC -- JSON Meeting Record --> UI[Animated Results UI]
+    DOC -- JSON Meeting Record --> UI[Results UI]
     
     subgraph Outputs [Downloadable Formats]
         UI -.-> MD[.md Export]
@@ -44,26 +44,26 @@ flowchart TD
     class STT,REF,DOC model;
 ```
 
-### Ordered Processing Workflow
-1. **Audio processing:** The uploaded recording is validated and processed locally. `faster-whisper` (`base.en` by default) transcribes the audio, producing the raw English transcript.
-2. **Transcript refinement:** A dedicated Language Model processes the raw transcript, correcting speech-recognition errors (especially domain-specific terms and acronyms) and returning a clean, highly readable transcript without altering the original meaning.
-3. **Meeting documentation:** A separate, more capable documentation Language Model converts the refined transcript into a highly structured JSON record containing an executive summary, chronological minutes, explicit decisions, and concrete action items.
+### Processing Workflow
+1. **Audio processing:** The uploaded recording is validated and processed locally. `faster-whisper` transcribes the audio to produce the raw transcript.
+2. **Transcript refinement:** A dedicated LLM proofreads the raw transcript, correcting speech-recognition errors (like domain-specific terms) and returning a clean transcript without changing the original meaning.
+3. **Meeting documentation:** A second, larger LLM reads the refined transcript and extracts a structured JSON record containing an executive summary, chronological minutes, decisions, and action items.
 
 ### Models Utilized
-- **Speech-to-Text Model:** `faster-whisper` (`base.en`). Runs locally and is optimized for English transcription speed and accuracy.
-- **Transcript Refinement Model:** `openai/gpt-oss-20b` (via Groq API). A fast, highly capable open-source model tasked specifically with proofreading and terminology correction while strictly preserving intent, names, numbers, and negations.
-- **Meeting Documentation Model:** `openai/gpt-oss-120b` (via Groq API). A powerful, high-parameter model tasked with deep semantic extraction. It synthesizes accurate minutes, decisions, and tasks, strictly following anti-hallucination guardrails (e.g., outputting `Unspecified` for missing owners/deadlines).
+- **Speech-to-Text Model:** `faster-whisper` (`base.en`). Runs locally for fast transcription.
+- **Transcript Refinement Model:** `openai/gpt-oss-20b` (via Groq API). A fast open-source model used to fix terminology while strictly preserving intent and names.
+- **Meeting Documentation Model:** `openai/gpt-oss-120b` (via Groq API). A larger model used for deep semantic extraction. It synthesizes the minutes and decisions, following strict rules to avoid hallucinations (like outputting `Unspecified` for missing deadlines).
 
-*All model names and endpoints are fully configurable via the `.env` file.*
+*Note: Model names and endpoints are configurable via the `.env` file.*
 
-## 🧩 Module Breakdown
-- `static/index.html`: A custom SPA frontend featuring real-time pipeline status and inline error handling.
-- `api.py`: FastAPI backend that runs the multimodal processing pipeline and serves the frontend.
-- `audio_processing.py`: Audio validation and local transcription using `faster-whisper`.
-- `llm_chains.py`: Manages the separate LLM stages for transcript refinement and documentation generation.
-- `prompts.py`: Optimized system prompts enforcing strict extraction rules and anti-hallucination constraints.
+## Module Breakdown
+- `static/index.html`: The HTML frontend that shows the pipeline status and results.
+- `api.py`: FastAPI backend that connects the frontend to the pipeline.
+- `audio_processing.py`: Audio validation and local transcription logic.
+- `llm_chains.py`: Manages the prompts and API calls for the two LLM stages.
+- `prompts.py`: The system prompts that enforce the extraction rules.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.10+
@@ -75,7 +75,7 @@ Clone the repository and install dependencies:
 git clone https://github.com/prakashkumariitg/NovaAI.git
 cd NovaAI
 python -m venv .venv
-# Windows: .venv\Scriptsctivate
+# Windows: .venv\Scripts\activate
 # Linux/Mac: source .venv/bin/activate
 
 pip install -r requirements.txt
@@ -98,7 +98,7 @@ Open `http://localhost:8000` in your web browser.
 
 ---
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 A `Dockerfile` is included for containerized deployment.
 ```bash
@@ -107,5 +107,5 @@ docker run -p 8000:8000 --env-file .env nova-ai
 ```
 Visit `http://localhost:8000`.
 
-## 📁 Submission Assets
+## Submission Assets
 The sample meeting audio recording and all generated JSON/Markdown outputs are located in the `Meeting_Audio_And_with_Items` folder.
